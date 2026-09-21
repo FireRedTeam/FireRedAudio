@@ -119,8 +119,8 @@ def clone_voice(
         raise gr.Error("Please provide the transcript of the reference audio.")
     if not (target_text or "").strip():
         raise gr.Error("Please provide the text to synthesise.")
-    used = _seed(seed, randomize_seed)
     with INFER_LOCK:
+        used = _seed(seed, randomize_seed)
         out = ENGINE.tts(
             prompt_text=reference_text.strip(),
             prompt_audio=reference_audio,
@@ -148,8 +148,8 @@ def design_voice(
         raise gr.Error("Please describe the voice you want.")
     if not (text or "").strip():
         raise gr.Error("Please provide the text to synthesise.")
-    used = _seed(seed, randomize_seed)
     with INFER_LOCK:
+        used = _seed(seed, randomize_seed)
         out = ENGINE.voice_design(
             instruction=instruction.strip(),
             text=text.strip(),
@@ -177,8 +177,8 @@ def edit_speech(
         raise gr.Error("Please provide an audio clip to edit.")
     if not (instruction or "").strip():
         raise gr.Error("Please provide an edit instruction.")
-    used = _seed(seed, randomize_seed)
     with INFER_LOCK:
+        used = _seed(seed, randomize_seed)
         out = ENGINE.edit(
             audio_path=audio,
             instruction=instruction.strip(),
